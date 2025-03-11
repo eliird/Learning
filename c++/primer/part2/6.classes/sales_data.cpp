@@ -19,7 +19,14 @@ private:
 public:
     // constructors
     Sales_data()=default;
-    Sales_data(const std::string &s): isbn(s){ } // part after : is constructor initializer list
+    /*
+    we can use explicit keyword to stop automatic conversions
+    e.g we could create a class like
+    Sales_data d1;
+    d1.comine("something") // this would be okay because something gets converted to class implicitly
+    - by setting it to explicit we disallow this behavior and above code would yield compiletime error
+    */
+    explicit Sales_data(const std::string &s): isbn(s){ } // part after : is constructor initializer list
     Sales_data(const std::string &s, unsigned n, double p): 
         isbn(s), units_sold(n), revenue(p * n)
     { }
