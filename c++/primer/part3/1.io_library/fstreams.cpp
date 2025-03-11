@@ -24,6 +24,7 @@ void excercise1(const string &file1, const string &file2){
     while(std::getline(input,s))
         output << s << std::endl;
 
+    // do not need to write here explicityly, as soon as streams go out of scope they are destroyed and close is called automatically
     input.close();
     output.close();
 }
