@@ -4,6 +4,12 @@
 using std::cin; using std::cout; using std::string; using::std::endl;
 
 class Sales_data{
+/*
+friend memebers which have access to private vairables of classes
+*/
+friend std::istream &read(std::istream &, Sales_data&);
+friend std::ostream &print(std:: ostream &os, const Sales_data& item);
+
 private:
     string isbn = "";
     unsigned units_sold = 0;
@@ -74,18 +80,24 @@ Sales_data& Sales_data::combine(const Sales_data&data2){
 }
 
 std::istream &read(std::istream &is, Sales_data &item){
+    // Becuase we decalered it as a friend function we can access private members without need of calling functions
     double price = 0;
-    string isbn;
-    int units_sold;
-    is >> isbn >> units_sold >> price;
-    item.set_isbn(isbn);
-    item.set_units_sold(units_sold, price);
+    // string isbn;
+    // int units_sold;
+    is >> item.isbn >> item.units_sold >> price;
+    item.revenue = price * item.units_sold;
+    // item.set_isbn(isbn);
+    // item.set_units_sold(units_sold, price);
     return is;
 }
 
 std::ostream &print(std:: ostream &os, const Sales_data& item){
-    os << item.get_isbn() << " " << item.get_units_sold() << " " 
-    << item.get_revenue() << " " << item.avg_price();
+    // os << item.get_isbn() << " " << item.get_units_sold() << " " 
+    // << item.get_revenue() << " " << item.avg_price();
+
+    // Becuase we decalered it as a friend function we can access private members without need of calling functions
+    os << item.isbn << " " << item.units_sold << " " 
+    << item.revenue << " " << item.avg_price();
     return os;
 }
 
