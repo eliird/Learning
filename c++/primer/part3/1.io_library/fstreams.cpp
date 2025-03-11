@@ -25,7 +25,7 @@ void excercise1(const string &file1, const string &file2){
         output << s << std::endl;
 
     input.close();
-    output.close()
+    output.close();
 }
 
 
